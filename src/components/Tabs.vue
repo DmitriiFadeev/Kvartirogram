@@ -1,14 +1,29 @@
 <template>
   <div class="tabs">
-    <div class="tabs__btn tabs__btn--active">ЖК Кислород Литер 8</div>
-    <div class="tabs__btn">Обновления</div>
-    <div class="tabs__btn">Загрузка</div>
+    <div @click="(e) =>setCurrentTabs(e)" :id="1" class="tabs__btn" :class="getCurrentTabs === '1' ? 'tabs__btn--active' : ''">{{getItem.name}}</div>
+    <div @click="(e) =>setCurrentTabs(e)" :id="2" class="tabs__btn" :class="getCurrentTabs === '2' ? 'tabs__btn--active' : ''">Обновления</div>
+    <div @click="(e) =>setCurrentTabs(e)" :id="3" class="tabs__btn" :class="getCurrentTabs === '3' ? 'tabs__btn--active' : ''">Загрузка</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Tabs"
+  name: "Tabs",
+
+  computed: {
+    getItem() {
+      return this.$store.getters['getItem'];
+    },
+    getCurrentTabs() {
+      return this.$store.getters['getCurrentTabs'];
+    }
+  },
+
+  methods: {
+    setCurrentTabs(e){
+      this.$store.commit('setCurrentTabs', e.target.id)
+    }
+  }
 }
 </script>
 
@@ -19,8 +34,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 20px;
-    margin-bottom: 20px;
-    //border-bottom: 1px solid #9E9E9E;
+
     background-color: #FFFFFF;
 
     &__btn{
@@ -34,6 +48,11 @@ export default {
       text-align: center;
       color: #757676;
       padding: 10px;
+      cursor: pointer;
+
+      &:hover{
+       color: #4C95DF;
+      }
     }
 
     &__btn--active{

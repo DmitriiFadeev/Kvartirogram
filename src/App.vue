@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :item="getStatus"/>
-    <Table :item="getItem"/>
+    <Header />
+    <Table />
   </div>
 </template>
 
@@ -15,18 +15,29 @@ export default {
     Header, Table
   },
 
-  computed: {
-    getItem() {
-      return this.$store.getters['getItem'];
+  metaInfo: {
+    title: 'Default App Title',
+    titleTemplate: '%s | vue-meta Example App',
+    htmlAttrs: {
+      lang: 'en-US'
     },
-    getStatus() {
-      return this.$store.getters['getStatus'];
-    },
-  }
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, user-scalable=no' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+    ]
+  },
 }
 </script>
 
 <style>
 #app {
+  background-color: #E5E5E5;
+  width: 100%;
+  height: 100vh;
+}
+body{
+  margin: 0;
+  padding: 0;
 }
 </style>
