@@ -1,19 +1,23 @@
 <template>
   <div class="entrance" :class="filteredItems ? 'jc-en' : 'jc-st'">
     <div class="entrance__row" v-for="(row, index) in item" :key="index">
-        <div class="entrance__item" :class="[itm.status, itm.active === 'disabled' ? 'entrance__item--disabled' : '', row.selectlvl ? 'entrance__item--select' : '']" v-for="itm in row.rooms" :key="itm.number">
+        <div
+            class="entrance__item"
+            :class="[itm.status, itm.active === 'disabled' ? 'entrance__item--disabled' : '', row.selectlvl ? 'entrance__item--select' : '']"
+            v-for="itm in row.rooms"
+            :key="itm.number">
           <div class="entrance__itemCol entrance__number">{{itm.number}}</div>
           <div class="entrance__itemCol entrance__params">
             <div class="entrance__table">
               <div class="entrance__tableRow">
                 <div class="entrance__square">{{Number(itm.square).toLocaleString('ru')}}</div>
-                <div class="entrance__col">{{itm.col}} комн.</div>
+                <div class="entrance__col">{{itm.col}}</div>
               </div>
               <div class="entrance__tableRow">
                 <div class="entrance__houseroom">{{itm.houseroom}}</div>
-                <div class="entrance__summa">{{Number(itm.summa).toLocaleString('ru')}}</div>
+                <div class="entrance__summa">{{Number(itm.price).toLocaleString('ru')}}</div>
               </div>
-              <div class="entrance__price">{{Number(itm.price).toLocaleString('ru')}}</div>
+              <div class="entrance__price">{{Number(itm.summa).toLocaleString('ru')}}</div>
             </div>
           </div>
         </div>
@@ -31,18 +35,10 @@ export default {
     item: Array,
   },
 
-  mounted() {
-    // console.log('selectlvl', this.selectlvl)
-  },
-
   computed: {
     ...mapState({
       filteredItems: 'filteredItems'
     })
-
-    // getFilteredItems(){
-    //   return this.$store.getters['getFilteredItems'];
-    // }
   }
 }
 </script>
@@ -58,9 +54,10 @@ export default {
     align-items: center;
     flex-direction: column;
     padding: 6px 9px;
-    width: 97%;
+    width: 100%;
     height: 100%;
     margin-bottom: 10px;
+    align-items: flex-start;
 
     &__row{
       display: flex;
@@ -130,7 +127,8 @@ export default {
     &__square{
       border-right: 1px solid #9E9E9E;
       padding: 1px;
-      width: 40%;
+      width: 35%;
+      min-width: 35%;
     }
     &__col{
       padding: 1px 3px;
@@ -138,7 +136,8 @@ export default {
     &__houseroom{
       border-right: 1px solid #9E9E9E;
       padding: 1px;
-      width: 40%;
+      width: 35%;
+      min-width: 35%;
     }
     &__summa{
       padding: 1px 3px;

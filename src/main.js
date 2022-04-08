@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
+import VuePapaParse from 'vue-papa-parse'
+
+Vue.use(VuePapaParse)
 
 Vue.config.productionTip = false
 

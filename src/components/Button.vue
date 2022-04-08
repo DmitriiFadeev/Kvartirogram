@@ -1,6 +1,7 @@
 <template>
   <div>
-    <button :class="color" @click="filtered()" class="btn">{{text}}</button>
+    <input v-if="typ" type="file" :ref="reff" :class="color" @click="event()" class="input">
+    <button v-else :class="color" @click="event()" class="btn">{{text}}</button>
   </div>
 </template>
 
@@ -10,12 +11,14 @@ export default {
   props: {
     text: String,
     color: String,
+    typ: String,
+    reff: String
   },
   methods: {
-    filtered(){
+    event(){
       this.$emit('click')
     },
-  }
+  },
 }
 </script>
 
@@ -41,8 +44,27 @@ export default {
     }
   }
 
+  .input{
+    &::-webkit-file-upload-button {
+      border: none;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+      color: #FFFFFF;
+      padding: 10px 40px;
+      cursor: pointer;
+      min-width: 200px;
+    }
+  }
+
   .one{
-    background: #4C95DF;
+    &::-webkit-file-upload-button{
+      background: #4C95DF;
+    }
   }
   .two{
     background: #9E4BE2;

@@ -13,7 +13,7 @@
     </div>
     <div class="table__content">
       <div class="table__inner" v-for="items in getItem.body">
-        <div class="table__title">{{items.entrance}}</div>
+        <div class="table__title">{{items.entrance}} подъезд</div>
         <Entrance :item="items.apartments" />
       </div>
     </div>
@@ -43,7 +43,7 @@ export default {
   },
 
   mounted() {
-    this.setLvl()
+    console.log('getItem', this.getItem)
   },
 
   methods: {

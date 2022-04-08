@@ -15,6 +15,7 @@ import Tabs from './Tabs.vue'
 import Kvartiragramma from './Kvartiragramma.vue'
 import Loading from './Loading.vue'
 import Update from './Update.vue'
+import {mapActions} from "vuex";
 
 
 export default {
@@ -28,6 +29,15 @@ export default {
       return this.$store.getters['getCurrentTabs'];
     }
   },
+
+  mounted() {
+    this.getObject()
+    // this.getData();
+  },
+
+  methods: {
+    ...mapActions(['getObject', 'getData'])
+  }
 }
 </script>
 
